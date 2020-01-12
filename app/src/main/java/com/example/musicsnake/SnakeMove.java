@@ -1,48 +1,68 @@
 package com.example.musicsnake;
 
+import com.example.musicsnake.Coordinates;
+import com.example.musicsnake.EnumTileType;
+
 import android.content.Context;
+import java.util.ArrayList;
+import java.util.List;
 
 public class SnakeMove
 {
-    Context context;
-    Thread thread = null;
-    //Kierunek ruchu weza
-    enum ruch {UP, RIGHT, DOWN, LEFT}
-    //Dlugosc Weza w blokach
-    int dlugoscWeza;
-    //Współrzęne poprawnej odpowiedzi
-    int poprX;
-    int poprY;
-    //Współrzęne ekranu gry
-    int ekranX;
-    int ekranY;
-    //Liczba punktów
-    int wynik;
-    //Współrzędne wszystkich segmentów węża
-    int[] wazX;
-    int[] wazY;
-    //Czy gra jest uruchomiona
-    boolean czyGra;
-    //Rozmiar panelu grywalnego w blokach
-    final int szerokoscBloku = 40;
-    int wysokoscBloku;
-    //Rozmiar bloku w pikselach
-    int blok;
+    public static final int GameWidth = 28;
+    public static final int GameHeight = 42;
 
-    //Inicjalizacja poczatkowego ruchu weza w prawo
-    ruch ruchWeza = ruch.RIGHT;
+    private List<Coordinates> walls = new ArrayList<>();
 
-
-    void newGame()
+    public SnakeMove()
     {
-        wynik = 0;
-        dlugoscWeza = 1;
-        wazX[0] = szerokoscBloku / 2;
-        wazY[0] = wysokoscBloku / 2;
+
     }
 
-    public SnakeMove (Context context)
+    public void initGame()
     {
-        context = context;
+
+
+        AddWAlls();
     }
+
+    public EnumTileType[][] getMap()
+    {
+        EnumTileType[][] map = new EnumTileType[GameWidth][GameHeight];
+
+        for (int x = 0; x < GameWidth; x++)
+        {
+            for (int y = 0; y < GameHeight; y++)
+            {
+                map[x][y] = EnumTileType.Nothing;
+            }
+        }
+
+        for (Coordinates wall: walls)
+        {
+            map[wall.getX()][wall.getY()] = EnumTileType.Wall;
+        }
+
+        return map;
+    }
+
+    private void AddWAlls()
+    {
+
+        //górna i dolna ściana
+        for (int x = 0; x < GameWidth; x++)
+        {
+            walls.add(new Coordinates(x, 0));
+            walls.add(new Coordinates(x,GameHeight-1));
+        }
+
+        //prawa i lewa ściana
+        for (int y = 0; y < GameHeight; y++)
+        {
+            walls.add(new Coordinates(0, y));
+            walls.add(new Coordinates(GameWidth-1, y));
+        }
+    }
+
+
 }

@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">MusicSnake</string>
     <string name="title_activity_okno_gry">OknoGry</string>
-    <string name="button_wybierz_poziom">Wybierz poziom</string>
+    <string name="button_wyswietl_zasady">Wyświetl zasady</string>
     <string name="button_rozpocznij_gre">Rozpocznij grę</string>
     <string name="text_menu">Menu</string>
 </resources>

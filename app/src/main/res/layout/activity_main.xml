@@ -7,7 +7,7 @@
     tools:context=".MainActivity">
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/wyswietlZasady"
         android:layout_width="@android:dimen/thumbnail_width"
         android:layout_height="@android:dimen/notification_large_icon_height"
         android:layout_marginStart="109dp"
@@ -15,13 +15,14 @@
         android:layout_marginTop="49dp"
         android:layout_marginEnd="110dp"
         android:layout_marginRight="110dp"
-        android:text="@string/button_wybierz_poziom"
+        android:text="@string/button_wyswietl_zasady"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/rozpocznijGre"
         android:layout_width="@android:dimen/thumbnail_height"
         android:layout_height="@android:dimen/notification_large_icon_width"
         android:layout_marginStart="109dp"
@@ -32,7 +33,7 @@
         android:text="@string/button_rozpocznij_gre"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
+        app:layout_constraintTop_toBottomOf="@+id/wyswietlZasady" />
 
     <TextView
         android:id="@+id/textView"
@@ -50,5 +51,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -12,7 +12,12 @@ public class SnakeMove
     public static final int GameWidth = 28;
     public static final int GameHeight = 42;
 
+    private EnumDirection currentDirection = EnumDirection.East;
+
+    private EnumGameState currentGameState = EnumGameState.Running;
+
     private List<Coordinates> walls = new ArrayList<>();
+    private List<Coordinates> snake = new ArrayList<>();
 
     public SnakeMove()
     {
@@ -21,9 +26,42 @@ public class SnakeMove
 
     public void initGame()
     {
+        addSnake();
+        addWAlls();
+    }
 
+    public void updateDirection(EnumDirection  newDirection) {
+        if (Math.abs(newDirection.ordinal() - currentDirection.ordinal()) % 2 == 1)
+        {
+            currentDirection = newDirection;
+        }
+    }
 
-        AddWAlls();
+    public void update()
+    {
+        switch (currentDirection)
+        {
+            case North:
+                updateSnake(0,-1);
+                break;
+            case East:
+                updateSnake(1, 0);
+                break;
+            case South:
+                updateSnake(0,1);
+                break;
+            case West:
+                updateSnake(-1,0);
+                break;
+        }
+
+        for (Coordinates w: walls)
+        {
+            if( snake.get(0).equals((w)))
+            {
+                currentGameState = EnumGameState.Lost;
+            }
+        }
     }
 
     public EnumTileType[][] getMap()
@@ -38,6 +76,12 @@ public class SnakeMove
             }
         }
 
+        for (Coordinates s: snake)
+        {
+            map[s.getX()][s.getY()] = EnumTileType.SnakeHead;
+        }
+        map[snake.get(0).getX()][snake.get(0).getY()] = EnumTileType.SnakeHead;
+
         for (Coordinates wall: walls)
         {
             map[wall.getX()][wall.getY()] = EnumTileType.Wall;
@@ -46,7 +90,37 @@ public class SnakeMove
         return map;
     }
 
-    private void AddWAlls()
+    public EnumGameState getCurrentGameState()
+    {
+        return currentGameState;
+    }
+
+    private void updateSnake(int x, int y)
+    {
+        for (int i = snake.size()-1; i > 0 ; i--)
+        {
+            snake.get(i).setX(snake.get(i-1).getX());
+            snake.get(i).setY(snake.get(i-1).getY());
+        }
+
+        snake.get(0).setX(snake.get(0).getX() + x);
+        snake.get(0).setY(snake.get(0).getY() + y);
+    }
+
+    private void addSnake()
+    {
+        snake.clear();
+
+        snake.add(new Coordinates(7,7));
+        snake.add(new Coordinates(6,7));
+        snake.add(new Coordinates(5,7));
+        snake.add(new Coordinates(4,7));
+        snake.add(new Coordinates(3,7));
+        snake.add(new Coordinates(2,7));
+
+    }
+
+    private void addWAlls()
     {
 
         //górna i dolna ściana

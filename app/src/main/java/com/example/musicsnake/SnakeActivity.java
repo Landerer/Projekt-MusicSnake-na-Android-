@@ -1,15 +1,13 @@
 package com.example.musicsnake;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
-
-import java.util.List;
 
 public class SnakeActivity extends AppCompatActivity implements View.OnTouchListener{
 
@@ -19,6 +17,7 @@ public class SnakeActivity extends AppCompatActivity implements View.OnTouchList
     private final long updateDelay = 240;
     private float prevX, prevY;
     private MediaPlayer mp;
+    private TextView punkty;
 
 
     @Override
@@ -29,6 +28,9 @@ public class SnakeActivity extends AppCompatActivity implements View.OnTouchList
 
         snakeMove = new SnakeMove();
         snakeMove.initGame();
+
+        punkty = findViewById(R.id.punkty);
+        punkty.setText("Score: " + snakeMove.getScore());
 
         snakeView = (SnakeView)findViewById(R.id.snakeView);
         snakeView.setOnTouchListener(this);
@@ -45,6 +47,7 @@ public class SnakeActivity extends AppCompatActivity implements View.OnTouchList
             public void run ()
             {
                 snakeMove.update();
+                punkty.setText("Score: " + snakeMove.getScore());
 
                 if (snakeMove.getCurrentGameState() == EnumGameState.Running) {
                     handler.postDelayed(this, updateDelay);

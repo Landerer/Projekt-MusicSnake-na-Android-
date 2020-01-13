@@ -6,9 +6,21 @@
     android:layout_height="match_parent"
     tools:context=".SnakeActivity">
 
+    <TextView
+        android:id="@+id/punkty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <com.example.musicsnake.SnakeView
         android:id="@+id/snakeView"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_width="match_parent"/>
+        android:layout_marginTop="24dp"
+        app:layout_constraintTop_toBottomOf="@+id/punkty" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

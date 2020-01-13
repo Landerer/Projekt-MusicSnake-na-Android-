@@ -12,7 +12,6 @@ public class SnakeMove
     public static final int GameHeight = 42;
 
     private EnumDirection currentDirection = EnumDirection.East;
-
     private EnumGameState currentGameState = EnumGameState.Running;
 
     private List<Coordinates> walls = new ArrayList<>();
@@ -21,8 +20,13 @@ public class SnakeMove
 
     private Random random = new Random();
     private boolean increaseTail = false;
-
     private boolean newInterval = true;
+    private int score = 0;
+
+    public SnakeMove()
+    {
+
+    }
 
     private Coordinates getSnakeHead()
     {
@@ -34,9 +38,9 @@ public class SnakeMove
         return newInterval;
     }
 
-    public SnakeMove()
+    public int getScore()
     {
-
+        return score;
     }
 
     public void initGame()
@@ -108,6 +112,7 @@ public class SnakeMove
                 {
                     intervalToRemove = i;
                     increaseTail = true;
+                    score++;
                 }
                 else
                 {

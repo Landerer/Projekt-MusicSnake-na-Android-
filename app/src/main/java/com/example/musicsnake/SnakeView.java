@@ -1,8 +1,5 @@
 package com.example.musicsnake;
 
-import com.example.musicsnake.EnumTileType;
-import com.example.musicsnake.SnakeMove;
-
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;

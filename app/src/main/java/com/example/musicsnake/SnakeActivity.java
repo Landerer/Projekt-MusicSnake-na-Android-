@@ -2,11 +2,14 @@ package com.example.musicsnake;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Toast;
+
+import java.util.List;
 
 public class SnakeActivity extends AppCompatActivity implements View.OnTouchListener{
 
@@ -15,6 +18,7 @@ public class SnakeActivity extends AppCompatActivity implements View.OnTouchList
     private final Handler handler = new Handler();
     private final long updateDelay = 125;
     private float prevX, prevY;
+    private MediaPlayer mp;
 
 
     @Override
@@ -49,7 +53,11 @@ public class SnakeActivity extends AppCompatActivity implements View.OnTouchList
                 {
                     onGameLost();
                 }
-
+                if(snakeMove.playInterval())
+                {
+                    playInterval(snakeMove.getIntervals().get(0));
+                }
+                snakeView.setIntervals(snakeMove.getIntervals());
                 snakeView.setSnakeViewMap(snakeMove.getMap());
                 snakeView.invalidate();
             }
@@ -100,5 +108,11 @@ public class SnakeActivity extends AppCompatActivity implements View.OnTouchList
                 break;
         }
         return true;
+    }
+
+    public void playInterval(Interval interval)
+    {
+        mp = MediaPlayer.create(this, R.raw.unison_on_c);
+        mp.start();
     }
 }

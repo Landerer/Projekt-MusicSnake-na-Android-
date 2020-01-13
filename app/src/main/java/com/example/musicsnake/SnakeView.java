@@ -18,11 +18,11 @@ public class SnakeView extends View
     private EnumTileType snakeViewMap[][];
     private List<Interval> intervals;
 
-    public void setSnakeViewMap (EnumTileType[][] map)
+    public void setSnakeViewMap(EnumTileType[][] map)
     {
         this.snakeViewMap = map;
     }
-    public void setIntervals (List<Interval> intervals)
+    public void setIntervals(List<Interval> intervals)
     {
         this.intervals = intervals;
     }

@@ -16,7 +16,7 @@ public class SnakeActivity extends AppCompatActivity implements View.OnTouchList
     private SnakeMove snakeMove;
     private SnakeView snakeView;
     private final Handler handler = new Handler();
-    private final long updateDelay = 125;
+    private final long updateDelay = 240;
     private float prevX, prevY;
     private MediaPlayer mp;
 
@@ -112,7 +112,23 @@ public class SnakeActivity extends AppCompatActivity implements View.OnTouchList
 
     public void playInterval(Interval interval)
     {
-        mp = MediaPlayer.create(this, R.raw.unison_on_c);
+        int[] sounds = {
+                R.raw.unison_on_c,
+                R.raw.minor_second_on_c,
+                R.raw.major_second_on_c,
+                R.raw.minor_third_on_c,
+                R.raw.major_third_on_c,
+                R.raw.perfect_fourth_on_c,
+                R.raw.tritone_on_c,
+                R.raw.perfect_fifth_on_c,
+                R.raw.minor_sixth_on_c,
+                R.raw.major_sixth_on_c,
+                R.raw.minor_seventh_on_c,
+                R.raw.major_seventh_on_c,
+                R.raw.perfect_octave_on_c
+                };
+
+        mp = MediaPlayer.create(this, sounds[interval.getSemitones()]);
         mp.start();
     }
 }

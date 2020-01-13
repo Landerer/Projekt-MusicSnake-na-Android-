@@ -32,7 +32,8 @@ public class SnakeActivity extends AppCompatActivity implements View.OnTouchList
 
         snakeView = (SnakeView)findViewById(R.id.snakeView);
         snakeView.setOnTouchListener(this);
-
+        snakeView.setIntervals(snakeMove.getIntervals());
+        playInterval(snakeMove.getIntervals().get(0));
         startUpdateHandler();
     }
 
@@ -53,11 +54,11 @@ public class SnakeActivity extends AppCompatActivity implements View.OnTouchList
                 {
                     onGameLost();
                 }
+
                 if(snakeMove.playInterval())
                 {
                     playInterval(snakeMove.getIntervals().get(0));
                 }
-                snakeView.setIntervals(snakeMove.getIntervals());
                 snakeView.setSnakeViewMap(snakeMove.getMap());
                 snakeView.invalidate();
             }

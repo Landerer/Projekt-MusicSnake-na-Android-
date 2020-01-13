@@ -10,9 +10,6 @@ public class SnakeMove
     public static final int GameWidth = 28;
     public static final int GameHeight = 42;
 
-    public int generatedInterval = 0;
-    private Random generator = new Random();
-
     private EnumDirection currentDirection = EnumDirection.East;
 
     private EnumGameState currentGameState = EnumGameState.Running;
@@ -56,6 +53,13 @@ public class SnakeMove
                 break;
         }
 
+        checkCollisions();
+        checkIntervals();
+    }
+
+    private void checkCollisions()
+    {
+        //sprawdzanie kolizji ze ścianą
         for (Coordinates w: walls)
         {
             if( snake.get(0).equals((w)))

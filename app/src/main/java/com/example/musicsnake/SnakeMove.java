@@ -1,9 +1,7 @@
 package com.example.musicsnake;
 
-import com.example.musicsnake.Coordinates;
-import com.example.musicsnake.EnumTileType;
+import android.media.MediaPlayer;
 
-import android.content.Context;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,6 +9,9 @@ public class SnakeMove
 {
     public static final int GameWidth = 28;
     public static final int GameHeight = 42;
+
+    public int generatedInterval = 0;
+    private Random generator = new Random();
 
     private EnumDirection currentDirection = EnumDirection.East;
 
@@ -90,6 +91,11 @@ public class SnakeMove
         return map;
     }
 
+    public List<Interval> getIntervals()
+    {
+        return intervals;
+    }
+
     public EnumGameState getCurrentGameState()
     {
         return currentGameState;
@@ -122,7 +128,6 @@ public class SnakeMove
 
     private void addWAlls()
     {
-
         //górna i dolna ściana
         for (int x = 0; x < GameWidth; x++)
         {
